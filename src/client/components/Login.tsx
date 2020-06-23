@@ -32,7 +32,7 @@ export const Login: React.FC<LoginProps> = () => {
     }
 
     return (
-        <div className="bg-dark p-4 rounded text-white shadow">
+        <div className="bg-white p-4 rounded-0 shadow-lg">
             <form className="form-signin d-flex flex-column justify-content-center" id="login-form">
 
                 <h1 className="w-75 register-text m-auto text-center" style={{ fontWeight: 400, fontSize: '3rem' }}>
@@ -63,7 +63,7 @@ export const Login: React.FC<LoginProps> = () => {
                     />
 
                     <button
-                        className="btn btn-primary btn-block mt-4 shadow-lg py-2"
+                        className="btn btn-primary btn-block mt-4 shadow-lg py-2 rounded-0"
                         type="submit"
                         onClick={handleLoginSubmit}
                     >

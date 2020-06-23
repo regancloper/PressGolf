@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../scss/app';
 import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 interface NavbarProps {
     color: string;
@@ -22,9 +23,9 @@ const Header: React.FC<NavbarProps> = ({ color }) => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
-                            <Nav.Link className="text-white" href="#home">Login</Nav.Link>
-                            <Nav.Link className="text-white" href="#link">Donate</Nav.Link>
-                            <button className="btn btn-primary text-white">Sign Up</button>
+                            <Nav.Link className="text-white" href="#home">Donate</Nav.Link>
+                            <Link className="text-white nav-link" to="/login">Login</Link>
+                            <Link to="/register" className="btn btn-primary rounded-0 h-25 text-white">Sign Up</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

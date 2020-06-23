@@ -5,7 +5,7 @@ interface LoginPageProps {
 
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ }) => {
+const LoginPage: React.FC<LoginPageProps> = ({ }) => {
     return (
         <div className="login-course h-100 d-flex align-items-center">
             <div className="container">
@@ -20,3 +20,5 @@ export const LoginPage: React.FC<LoginPageProps> = ({ }) => {
         </div>
     );
 }
+
+export default LoginPage;

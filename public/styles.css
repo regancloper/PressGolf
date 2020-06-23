@@ -12,3 +12,10 @@
     background-position: bottom;
 }
 
+.register-course {
+    background-image: url('images/register-course2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+

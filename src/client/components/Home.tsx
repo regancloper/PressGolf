@@ -31,7 +31,7 @@ const Home: React.FC<HomeProps> = ({ }) => {
                     <div className="text-center text-white" style={{ paddingTop: '16rem', paddingBottom: '16rem' }}>
                         <h1>Start Playing with Your Friends.</h1>
                         <p>Keep track of all of your bets in one place.</p>
-                        <Link to='/login' className="btn btn-lg btn-primary">Log In</Link>
+                        <Link to='/login' className="btn btn-lg btn-primary rounded-0 shadow">Log In</Link>
                     </div>
 
                 </div>

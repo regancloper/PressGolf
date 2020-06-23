@@ -11,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ }) => {
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-4">
                         <h6 className="text-white text-center">
-                            Press Golf App
+                            Press Golf App, 2020.
                         </h6>
                     </div>
                 </div>
