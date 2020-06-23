@@ -1,0 +1,14 @@
+.background-course {
+    background-image: url('images/home-course.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.login-course {
+    background-image: url('images/login-course.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+

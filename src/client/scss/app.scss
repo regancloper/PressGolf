@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+$theme-colors: (
+    'primary': #6b966e,
+    'dark': #1e1835
+);
+
+.header {
+    border-top: 3px solid #6b966e;
+    font-family: 'raleway';
+}
+
+#header-clear {
+    background-color: transparent;
+}
+
+#header-dark {
+    transition: .8s ease;
+    background-color: #1e1835;
+}
+
+.icon-bar {
+    width: 21px;
+    height: 3px;
+    background-color: #fff;
+    display: block;
+    transition: all .2s;
+    margin-top: 4px;
+}
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
