@@ -1,26 +1,27 @@
-import * as React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
-import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
+import React, { useContext, useEffect } from 'react';
+import AuthStack from './components/authstack/AuthStack';
+import AppStack from './components/appstack/AppStack';
+import { AuthContext } from './components/providers/AuthProvider';
 
 const App: React.FC<AppProps> = () => {
+	const { user, login } = useContext(AuthContext);
 
+	useEffect(() => {
+		// check if the user is logged in or not
+		let token = localStorage.getItem('token');
+		if (token) {
+			console.log(token);
+			// need to decode token to make sure its right
+			login(Number(localStorage.getItem('userid')), localStorage.getItem('role'));
+		} else {
+			console.log('no token found!');
+		}
+	}, [])
 
 	return (
-		<BrowserRouter>
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route exact path="/login">
-					<LoginPage />
-				</Route>
-				<Route exact path="/register">
-					<RegisterPage />
-				</Route>
-			</Switch>
-		</BrowserRouter>
+		<>
+			{user ? <AppStack /> : <AuthStack />}
+		</>
 	);
 
 }

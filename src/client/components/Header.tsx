@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import '../scss/app';
 import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { AuthContext } from './providers/AuthProvider';
 
 interface NavbarProps {
     color: string;
+    loggedIn: boolean;
 }
 
-const Header: React.FC<NavbarProps> = ({ color }) => {
+const Header: React.FC<NavbarProps> = ({ color, loggedIn }) => {
+    const { logout } = useContext(AuthContext);
+    const history = useHistory();
+
+    const handleLogout = () => {
+        logout();
+        history.push('/');
+    }
 
     return (
         <div className="header fixed-top" id={color}>
@@ -23,9 +32,16 @@ const Header: React.FC<NavbarProps> = ({ color }) => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
-                            <Nav.Link className="text-white" href="#home">Donate</Nav.Link>
-                            <Link className="text-white nav-link" to="/login">Login</Link>
-                            <Link to="/register" className="btn btn-primary rounded-0 h-25 text-white">Sign Up</Link>
+                            {/* <Nav.Link className="text-white" href="#home">Donate</Nav.Link> */}
+                            {loggedIn ? (
+                                <button className="btn btn-danger rounded-0 h-25 text-white" onClick={handleLogout}>Sign Out</button>
+                            ) : (
+                                    <>
+                                        <Link className="text-white nav-link" to="/login">Login</Link>
+                                        <Link to="/register" className="btn btn-primary rounded-0 h-25 text-white">Sign Up</Link>
+                                    </>
+                                )}
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

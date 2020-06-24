@@ -2,7 +2,8 @@
 
 $theme-colors: (
     'primary': #6b966e,
-    'dark': #1e1835
+    'dark': #1e1835,
+    'danger': rgb(196, 53, 53)
 );
 
 .header {
@@ -27,5 +28,170 @@ $theme-colors: (
     transition: all .2s;
     margin-top: 4px;
 }
+
+.raleway {
+    font-family: 'raleway';
+}
+
+.profile-card {
+    cursor: pointer;
+    height: 225px;
+}
+
+#index-card {
+    border-radius: 20px;
+    font-family: 'Raleway';
+    background-color: rgba(71, 178, 211, 0.555);
+}
+
+#index-card-top {
+    height: 72%;
+    border-radius: 20px 20px 0 0;
+    padding: 1.25rem;
+}
+
+#index-card-bottom {
+    height: 28%;
+    border-radius: 0 0 20px 20px;
+    background-color: rgb(211, 209, 209);
+}
+
+#friend-card {
+    font-family: 'Raleway';
+    background-color: rgba(31, 182, 94, 0.555);
+    border-radius: 20px;
+    border: 2px solid rgba(31, 182, 94, 0.555);
+}
+
+#friend-card-top {
+    height: 20%;
+    border-radius: 20px 20px 0 0;
+}
+
+#table-top {
+    border-radius: 20px 20px 0 0;
+    border-top: hidden;
+}
+
+.score-container {
+    border-radius: 20px;
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(5, 8, 5, 0.288);;
+  }
+    
+.score {
+    font-family: 'Raleway';
+    border: 1px solid black;
+    border-radius: 5%;
+    height: 4.5rem;
+    width: 4.5rem;
+    margin: 8px;
+    display: flex;
+    align-items: flex-end;
+    line-height: 1em;
+    font-size: 3rem;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.sidebar-panel {
+    font-family: 'Raleway';
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    min-height: 100vh;
+    z-index: 2;
+    background-color: white;
+    transition: all 0.3s;
+    border-radius: 0 8px 8px 0;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    /* full screen */
+    width: 100vw;
+    height: 100vh;
+    /* transparent black */
+    background: rgba(0, 0, 0, 0.7);
+    /* middle layer, i.e. appears below the sidebar */
+    z-index: 1;
+    opacity: 0;
+    /* animate the transition */
+    transition: all 0.5s ease-in-out;
+}
+
+/* display .overlay when it has the .active class */
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.sidebar-panel.active {
+    left: 0;
+}
+
+.sidebar {
+    padding: 10%;
+}
+
+#logo {
+    margin: 0;
+    font-weight: 800;
+}
+
+#root {
+    background-color: rgba(143, 143, 143, 0.05);
+}
+
+#content-container {
+    padding-top: 10%;
+    min-height: 100vh;
+}
+
+#sidebar-collapse {
+    border: none;
+    padding: 0;
+    outline: none;
+}
+
+// button styling
+
+#play-btn {
+    padding: 0.1rem .3rem;
+}
+
+#post-btn {
+    border-radius: 1rem;
+}
+
+#add-btn {
+    border-radius: 1rem;
+}
+
+#top-navbar {
+    font-family: 'Raleway';
+    padding: 0.8rem 1rem;
+}
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+
+
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

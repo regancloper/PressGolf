@@ -25,7 +25,7 @@ const Home: React.FC<HomeProps> = ({ }) => {
 
     return (
         <>
-            <Header color={headerColor} />
+            <Header color={headerColor} loggedIn={false} />
             <div className="background-course">
                 <div className="container">
                     <div className="text-center text-white" style={{ paddingTop: '16rem', paddingBottom: '16rem' }}>
@@ -46,22 +46,22 @@ const Home: React.FC<HomeProps> = ({ }) => {
 
                 <div className="container">
                     <div className="card-deck">
-                        <div className="card shadow lift border-right-0 border-left-0 border-bottom-0 rounded-0 home-card d-flex align-items=center">
+                        <div className="card shadow border-0 rounded-0 d-flex align-items-center">
                             <div className="card-body">
                                 <p className="card-text register-text text-center">Create a free account with your name and email address.</p>
                             </div>
                         </div>
-                        <div className="card shadow lift border-right-0 border-left-0 border-bottom-0 rounded-0 home-card d-flex align-items=center">
+                        <div className="card shadow border-0 rounded-0 d-flex align-items-center">
                             <div className="card-body">
                                 <p className="card-text register-text text-center">Post all of your scores, or just scores from your most recent golf rounds.</p>
                             </div>
                         </div>
-                        <div className="card shadow lift border-right-0 border-left-0 border-bottom-0 rounded-0 home-card d-flex align-items=center">
+                        <div className="card shadow border-0 rounded-0 d-flex align-items-center">
                             <div className="card-body">
                                 <p className="card-text register-text text-center">Keep track of an official handicap index as you continue to post scores.</p>
                             </div>
                         </div>
-                        <div className="card shadow lift border-right-0 border-left-0 border-bottom-0 rounded-0 home-card d-flex align-items=center">
+                        <div className="card shadow border-0 rounded-0 d-flex align-items-center">
                             <div className="card-body">
                                 <p className="card-text register-text text-center">Auto-manage bets and amounts when playing with friends.</p>
                             </div>
