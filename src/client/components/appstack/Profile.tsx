@@ -25,8 +25,8 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
         try {
             let player = await apiService(`/api/users/${user.userid}`);
             setPlayer(player);
-            // let scores = await apiService(`/api/scores/${userid}`);
-            // setScores(scores);
+            let scores = await apiService(`/api/scores/${user.userid}`);
+            setScores(scores);
         } catch (error) {
             console.log(error);
         }
@@ -40,7 +40,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
         <>
             <Header color='header-dark' loggedIn={true} />
             <div className="container" id="content-container">
-                <div className="container">
+                <div className="container mt-5">
                     <div className="row d-flex justify-content-center">
                         <div className="col-md-6 mb-3">
                             <div className="card profile-card shadow-lg" id="index-card">
@@ -51,7 +51,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                     </div>
 
                                     <div className="d-flex align-items-center justify-content-between" id="index-card-bottom">
-                                        <small className="ml-4">Rev. 4-15-20</small>
+                                        <small className="ml-4">Rev. 7-1-20</small>
                                         <Link className="btn-sm btn-primary py-0 mx-4" id="post-btn" to="/post">Post Score</Link>
                                     </div>
                                 </div>
@@ -86,14 +86,14 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                                     <td>+1.2</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Name</td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td>Josh Jones</td>
+                                                    <td>24.2</td>
+                                                    <td>+5.0</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Name</td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td>Tom Jones</td>
+                                                    <td>18.5</td>
+                                                    <td>+3.5</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -106,11 +106,11 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                         </div>
                     </div>
 
-                    <div className="row">
+                    <div className="row my-3">
                         <div className="col">
-                            <div className="shadow-lg score-container">
+                            <div className="score-container">
                                 {scores.map(score => (
-                                    <Link to="/" key={score.id} className="score shadow">{score.score}</Link>
+                                    <div key={score.id} className="score shadow">{score.score}</div>
                                 ))}
                             </div>
                         </div>

@@ -24,7 +24,7 @@ export const Login: React.FC<LoginProps> = () => {
             if (result) {
                 login(result.userid, result.role);
                 SetAccessToken(result.token, { userid: result.userid, role: result.role });
-                history.push('/profile');
+                history.push('/');
             } else {
                 // replace with better user alert
                 alert('You entered the wrong credentials! Please try again.');

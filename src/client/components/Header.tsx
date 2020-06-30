@@ -22,8 +22,8 @@ const Header: React.FC<NavbarProps> = ({ color, loggedIn }) => {
         <div className="header fixed-top" id={color}>
             <div className="container-lg">
                 <Navbar expand="lg" className="pr-1">
-                    <Navbar.Brand href="#home" className="text-white" style={{ fontSize: '1.8rem' }}>
-                        Press.
+                    <Navbar.Brand style={{ fontSize: '1.8rem' }}>
+                        <Link to="/" className="text-white" style={{textDecoration: 'none'}}>Press.</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0">
                         <span className="icon-bar mt-0"></span>

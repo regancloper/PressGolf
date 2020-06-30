@@ -7,11 +7,19 @@ const findOneByEmail = async (email: string) => Query('SELECT * FROM users WHERE
 
 const findOneById = async (id: number) => Query('SELECT * FROM users WHERE id = ? LIMIT 1', [id]);
 
-const insert = async (user: any) => Query('INSERT INTO users(email, password, role) VALUES (?, ?, ?)', [user.email, user.password, user.role]);
+const insert = async (user: IUser) => Query('INSERT INTO users SET ?', user);
 
 export default {
     getUser,
     findOneByEmail,
     findOneById,
     insert
+}
+
+interface IUser {
+    email: string;
+    password: string;
+    firstname: string;
+    lastname: string;
+    role?: string;
 }

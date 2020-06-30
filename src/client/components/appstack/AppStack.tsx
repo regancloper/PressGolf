@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Profile from './Profile';
+import PostScore from './PostScore';
 
 
 const AppStack: React.FC<AppStackProps> = () => {
@@ -8,15 +9,12 @@ const AppStack: React.FC<AppStackProps> = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route>
+				<Route exact path="/post">
+					<PostScore />
+				</Route>
+				<Route path="/">
 					<Profile />
 				</Route>
-				{/* <Route exact path="/login">
-					<LoginPage />
-				</Route>
-				<Route exact path="/register">
-					<RegisterPage />
-				</Route> */}
 			</Switch>
 		</BrowserRouter>
 	);

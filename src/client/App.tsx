@@ -10,7 +10,6 @@ const App: React.FC<AppProps> = () => {
 		// check if the user is logged in or not
 		let token = localStorage.getItem('token');
 		if (token) {
-			console.log(token);
 			// need to decode token to make sure its right
 			login(Number(localStorage.getItem('userid')), localStorage.getItem('role'));
 		} else {

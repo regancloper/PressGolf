@@ -4,17 +4,16 @@ import config from '../config';
 // table query imports
 import Users from './queries/users';
 import Tokens from './queries/tokens';
+import Scores from './queries/scores';
+import Courses from './queries/courses';
 
 // node - mysql connection pool
-console.log(config.mysql);
-
 export const pool = mysql.createPool(config.mysql);
 
 // resusable query helper method
 export const Query = <T = any>(query: string, values?: any) => {
 
     const sql = mysql.format(query, values);
-    console.log(sql);
 
     return new Promise<T>((resolve, reject) => {
         pool.query(sql, (err, results) => {
@@ -31,5 +30,7 @@ export const Query = <T = any>(query: string, values?: any) => {
 // export for use, i.e. DB.Users...
 export default {
     Users,
-    Tokens
+    Tokens,
+    Scores,
+    Courses
 }
