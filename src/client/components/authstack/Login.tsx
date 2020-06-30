@@ -12,9 +12,18 @@ export const Login: React.FC<LoginProps> = () => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [disabled, setDisabled] = useState<boolean>(false);
+    const [loginBtn, setLoginBtn] = useState<string | JSX.Element>('Sign In');
 
     const handleLoginSubmit = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
+        setLoginBtn(
+            <>
+                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span className="mx-2">Logging In...</span>
+            </>
+        );
+        setDisabled(true);
 
         try {
             let result = await apiService('/auth/login', 'POST', {
@@ -28,6 +37,8 @@ export const Login: React.FC<LoginProps> = () => {
             } else {
                 // replace with better user alert
                 alert('You entered the wrong credentials! Please try again.');
+                setLoginBtn('Sign In');
+                setDisabled(false);
             }
         } catch (e) {
             throw e;
@@ -69,8 +80,10 @@ export const Login: React.FC<LoginProps> = () => {
                         className="btn btn-primary btn-block mt-4 shadow-lg py-2 rounded-0"
                         type="submit"
                         onClick={handleLoginSubmit}
+                        disabled={disabled}
                     >
-                        Sign In</button>
+                        {loginBtn}
+                    </button>
 
 
                 </div>
