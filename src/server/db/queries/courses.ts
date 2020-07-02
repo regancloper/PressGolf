@@ -1,6 +1,6 @@
 import { Query } from '../index';
 
-const getAll = async () => Query('SELECT * FROM courses ORDER BY courses.clubname ASC');
+const getAll = async () => Query('SELECT * FROM courses WHERE teeName1 IS NOT NULL ORDER BY courses.clubname ASC');
 
 const getTeeBox = async (clubname: string) => Query('SELECT * FROM courses WHERE clubname = ?', [clubname]);
 

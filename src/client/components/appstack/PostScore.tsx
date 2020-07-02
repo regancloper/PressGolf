@@ -23,61 +23,37 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
     const getData = async () => {
         let courses: GolfCourse[] = [];
         try {
-            let allcourses = await apiService('/api/courses');
-            allcourses.map((course: RawCourseData) => {
-                if (course.teeName1) {
+            let allcourses: any = await apiService('/api/courses');
+            if (allcourses) {
+                allcourses.map((course: any) => {
+                    let courseTees = [];
+                    for (let i = 1; i <= 15; i++) {
+                        let key = "teeName" + i;
+                        if (!course[key]) break;
+                        else {
+                            courseTees.push({
+                                name: course[key],
+                                gender: course["teeGender" + i],
+                                par: course["teePar" + i],
+                                courseRating: course["courseRating" + i],
+                                bogeyRating: course["bogeyRating" + i],
+                                slopeRating: course["slopeRating" + i]
+                            });
+                        }
+                    }
                     let courseObj = {
                         id: course.id,
                         clubname: course.clubname,
                         city: course.city,
                         state: course.state,
-                        tees: [
-                            {
-                                name: course.teeName1,
-                                gender: course.teeGender1,
-                                par: course.teePar1,
-                                courseRating: course.courseRating1,
-                                bogeyRating: course.bogeyRating1,
-                                slopeRating: course.slopeRating1
-                            },
-                            {
-                                name: course.teeName2,
-                                gender: course.teeGender2,
-                                par: course.teePar2,
-                                courseRating: course.courseRating2,
-                                bogeyRating: course.bogeyRating2,
-                                slopeRating: course.slopeRating2
-                            },
-                            {
-                                name: course.teeName3,
-                                gender: course.teeGender3,
-                                par: course.teePar3,
-                                courseRating: course.courseRating3,
-                                bogeyRating: course.bogeyRating3,
-                                slopeRating: course.slopeRating3
-                            },
-                            {
-                                name: course.teeName4,
-                                gender: course.teeGender4,
-                                par: course.teePar4,
-                                courseRating: course.courseRating4,
-                                bogeyRating: course.bogeyRating4,
-                                slopeRating: course.slopeRating4
-                            },
-                            {
-                                name: course.teeName5,
-                                gender: course.teeGender5,
-                                par: course.teePar5,
-                                courseRating: course.courseRating5,
-                                bogeyRating: course.bogeyRating5,
-                                slopeRating: course.slopeRating5
-                            },
-                        ]
+                        tees: courseTees
                     }
                     courses.push(courseObj);
-                }
-            });
-            setCourses(courses);
+
+                });
+                setCourses(courses);
+            }
+
         } catch (error) {
             console.log(error);
         }
@@ -87,9 +63,10 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
         setSelectedCourse(e.target.value);
         if (e.target.value === '0') {
             setTeeBoxOptions([])
-        };
-        let index = findWithId(courses, Number(e.target.value))
-        setTeeBoxOptions(courses[index].tees);
+        } else {
+            let index = findWithId(courses, Number(e.target.value))
+            setTeeBoxOptions(courses[index].tees);
+        }
     }
 
     const handleTeeSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -119,7 +96,7 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
         <>
             <Header color='header-dark' loggedIn={true} />
             <div className="container" id="content-container">
-                <div className="py-3 container rounded-0 shadow-lg border border-primary mt-5">
+                <div className="py-3 container rounded-0 shadow-lg mt-5">
                     <form onSubmit={handlePostedScore}>
 
                         <div className="form-group">
@@ -146,7 +123,7 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
                                     return (
                                         <option
                                             key={`${teeBox.name}-${teeBox.gender}`}
-                                            value={teeBox.name}>{teeBox.name} - ({teeBox.courseRating} / {teeBox.slopeRating})
+                                            value={teeBox.name}>{teeBox.name} - ({teeBox.courseRating} / {teeBox.slopeRating}) ({teeBox.gender})
                                         </option>
                                     );
                                 })}
@@ -197,102 +174,13 @@ interface TeeBox {
     slopeRating: number;
 }
 
-interface RawCourseData {
-    id: number,
-    clubname: string,
-    city: string,
-    state: string,
-    teeName1: string,
-    teeGender1: string,
-    teePar1: number,
-    courseRating1: number,
-    bogeyRating1: number,
-    slopeRating1: number,
-    teeName2: string,
-    teeGender2: string,
-    teePar2: number,
-    courseRating2: number,
-    bogeyRating2: number,
-    slopeRating2: number,
-    teeName3: string,
-    teeGender3: string,
-    teePar3: number,
-    courseRating3: number,
-    bogeyRating3: number,
-    slopeRating3: number,
-    teeName4: string,
-    teeGender4: string,
-    teePar4: number,
-    courseRating4: number,
-    bogeyRating4: number,
-    slopeRating4: number,
-    teeName5: string,
-    teeGender5: string,
-    teePar5: number,
-    courseRating5: number,
-    bogeyRating5: number,
-    slopeRating5: number,
-    teeName6: string,
-    teeGender6: string,
-    teePar6: number,
-    courseRating6: number,
-    bogeyRating6: number,
-    slopeRating6: number,
-    teeName7: string,
-    teeGender7: string,
-    teePar7: number,
-    courseRating7: number,
-    bogeyRating7: number,
-    slopeRating7: number,
-    teeName8: string,
-    teeGender8: string,
-    teePar8: number,
-    courseRating8: number,
-    bogeyRating8: number,
-    slopeRating8: number,
-    teeName9: string,
-    teeGender9: string,
-    teePar9: number,
-    courseRating9: number,
-    bogeyRating9: number,
-    slopeRating9: number,
-    teeName10: string,
-    teeGender10: string,
-    teePar10: number,
-    courseRating10: number,
-    bogeyRating10: number,
-    slopeRating10: number,
-    teeName11: string,
-    teeGender11: string,
-    teePar11: number,
-    courseRating11: number,
-    bogeyRating11: number,
-    slopeRating11: number,
-    teeName12: string,
-    teeGender12: string,
-    teePar12: number,
-    courseRating12: number,
-    bogeyRating12: number,
-    slopeRating12: number,
-    teeName13: string,
-    teeGender13: string,
-    teePar13: number,
-    courseRating13: number,
-    bogeyRating13: number,
-    slopeRating13: number,
-    teeName14: string,
-    teeGender14: string,
-    teePar14: number,
-    courseRating14: number,
-    bogeyRating14: number,
-    slopeRating14: number,
-    teeName15: string,
-    teeGender15: string,
-    teePar15: number,
-    courseRating15: number,
-    bogeyRating15: number,
-    slopeRating15: number
-}
+// interface RawCourseData {
+//     id: number,
+//     clubname: string,
+//     city: string,
+//     state: string,
+//     [index: string]: string | number
+// }
 
 export default PostScore;
 
