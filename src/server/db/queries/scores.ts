@@ -15,4 +15,7 @@ interface Score {
     userid: number;
     courseid: number;
     score: number;
+    differential: number;
+    teeName: string;
+    teeGender: string;
 }

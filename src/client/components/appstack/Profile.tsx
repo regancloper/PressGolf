@@ -52,7 +52,11 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
 
                                     <div className="d-flex align-items-center justify-content-between" id="index-card-bottom">
                                         <small className="ml-4">Rev. 7-1-20</small>
-                                        <Link className="btn-sm btn-primary py-0 mx-4" id="post-btn" to="/post">Post Score</Link>
+                                        <div>
+                                            <Link className="btn-sm btn-info py-0 mx-4 profile-btn" to="/scorecard">Play</Link>
+                                            <Link className="btn-sm btn-primary py-0 mx-4 profile-btn" to="/post">Post Score</Link>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +101,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <Link className="btn-sm btn-success py-0 mx-4" id="add-btn" to="/post">Add Friend</Link>
+                                        <Link className="btn-sm btn-success py-0 mx-4 profile-btn" to="/post">Add Friend</Link>
                                     </div>
 
 

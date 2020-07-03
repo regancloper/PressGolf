@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import { apiService } from '../../utils/api';
-import { findWithId } from '../../utils/calculations';
+import { findWithId, calculateDiff } from '../../utils/calculations';
 import Header from '../Header';
 import { useHistory, Link } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
@@ -15,6 +15,9 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
     const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
     const [teeBoxOptions, setTeeBoxOptions] = useState<TeeBox[]>([]);
     const [selectedTee, setSelectedTee] = useState<string | null>(null);
+    const [slope, setSlope] = useState<number>(null);
+    const [courseRating, setCourseRating] = useState<number>(null);
+    const [teeGender, setTeeGender] = useState<string>(null);
     const [score, setScore] = useState<number | null>(null);
     const [courses, setCourses] = useState<GolfCourse[]>([]);
 
@@ -70,15 +73,23 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
     }
 
     const handleTeeSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedTee(e.target.value);
+        let teeObject: TeeBox = JSON.parse(e.target.value);
+        setSelectedTee(teeObject.name);
+        setSlope(Number(teeObject.slopeRating));
+        setCourseRating(Number(teeObject.courseRating));
+        setTeeGender(teeObject.gender);
     }
 
     const handlePostedScore = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        let differential = calculateDiff(score, courseRating, slope);
         let result = await apiService('/api/scores', 'POST', {
             userid: user.userid,
             courseid: Number(selectedCourse),
-            score
+            score,
+            differential,
+            teeName: selectedTee,
+            teeGender
         });
 
         if (result) {
@@ -123,7 +134,9 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
                                     return (
                                         <option
                                             key={`${teeBox.name}-${teeBox.gender}`}
-                                            value={teeBox.name}>{teeBox.name} - ({teeBox.courseRating} / {teeBox.slopeRating}) ({teeBox.gender})
+                                            value={JSON.stringify(teeBox)}
+                                        >
+                                            {teeBox.name} - ({teeBox.courseRating} / {teeBox.slopeRating}) ({teeBox.gender})
                                         </option>
                                     );
                                 })}
@@ -139,7 +152,11 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
                         </div>
 
 
-                        <button type="submit" className="btn btn-primary rounded-0">
+                        <button
+                            type="submit"
+                            className="btn btn-primary rounded-0"
+                            disabled={selectedCourse === null || selectedTee ===  null || score === null}
+                        >
                             Post Score
                         </button>
 
