@@ -4,6 +4,7 @@ import * as passport from 'passport';
 import usersRouter from './users';
 import scoresRouter from './scores';
 import coursesRouter from './courses';
+import holesRouter from './holes';
 
 
 const router = express.Router();
@@ -18,6 +19,7 @@ router.use((req, res, next) => {
 router.use('/users', usersRouter);
 router.use('/scores', scoresRouter);
 router.use('/courses', coursesRouter);
+router.use('/holes', holesRouter);
 
 
 

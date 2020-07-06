@@ -6,5 +6,6 @@ export interface TUser {
 
 export interface TScore {
     id: number;
-    score: number;
+	score: number;
+	differential: number;
 }

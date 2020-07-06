@@ -1,10 +1,11 @@
 export interface Score {
-    id: number,
-    score: number
+    id: number;
+    score: number;
+    differential: number;
 }
 
 export interface Player {
-    firstname: string,
-    lastname: string,
-    index: number,
+    firstname: string;
+    lastname: string;
+    index: number;
 }

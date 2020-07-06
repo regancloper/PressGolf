@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;600&display=swap');
 
 $theme-colors: (
     'primary': #6b966e,
@@ -41,7 +42,7 @@ $theme-colors: (
 #index-card {
     border-radius: 20px;
     font-family: 'Raleway';
-    background-color: rgba(71, 178, 211, 0.555);
+    background-color: rgba(181, 231, 247, 0.555);
 }
 
 #index-card-top {
@@ -138,8 +139,8 @@ div > .profile-btn {
     font-family: 'Raleway';
     padding: 0.8rem 1rem;
 }
-
-input {
+ 
+table input {
     display: block; 
     padding: 0.75rem; 
     margin: 0; 
@@ -147,6 +148,12 @@ input {
     width: 100%;
     background-color: transparent;
 }
+
+table {
+    font-family: 'Libre Franklin', sans-serif;
+}
+    
+
 
 .table > tbody > tr > td {
     padding: 0;
