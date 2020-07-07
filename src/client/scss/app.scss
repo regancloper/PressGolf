@@ -161,6 +161,10 @@ table {
     -webkit-overflow-scrolling: touch;
 }
 
+html, body{
+    overflow-x: hidden;
+}
+
 // :root {
 //     --scrollbar-track-color: transparent;
 //     --scrollbar-color: rgba(0,0,0,.2);
