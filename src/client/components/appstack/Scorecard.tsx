@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import Header from '../Header';
 import '../../scss/app';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { AuthContext } from '../providers/AuthProvider';
 interface ScorecardProps { }
 
 const Scorecard: React.FC<ScorecardProps> = () => {
+
     const location = useLocation<CourseData>();
     const history = useHistory();
     const { user } = useContext(AuthContext);
@@ -22,6 +23,14 @@ const Scorecard: React.FC<ScorecardProps> = () => {
     const [p1BackNineTotal, setP1BackNineTotal] = useState<number>(null);
     const [score, setScore] = useState<number>(null);
     const [scoreComplete, setScoreComplete] = useState(false);
+
+
+    const inputRefs: React.MutableRefObject<HTMLInputElement>[] = [];
+    for (let i = 0; i < 18; i++) {
+        const ref = useRef<HTMLInputElement>();
+        inputRefs.push(ref);
+    }
+
 
     // get info about each hole's par score
     const getCourseData = async () => {
@@ -38,26 +47,39 @@ const Scorecard: React.FC<ScorecardProps> = () => {
         }
     }
 
+
     useEffect(() => {
         getCourseData();
     }, []);
 
+
+    const autoTab = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        let elem: React.MutableRefObject<HTMLInputElement>;
+        if (e.target.value.length > 0 && e.target.value !== '1' && index < 17) {
+            elem = inputRefs[index + 1];
+            elem.current.focus();
+        }
+    };
+
     const updateScorecard = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         // change score color based on relation to par
         if (Number(e.target.value) === holes[index] - 1) {
-            e.target.style.color = 'lightseagreen';
+            e.target.style.color = 'mediumseagreen';
             e.target.style.fontWeight = 'normal';
         } else if (Number(e.target.value) > holes[index] + 1) {
             e.target.style.color = 'darkmagenta';
             e.target.style.fontWeight = 'bold';
         } else if (Number(e.target.value) === holes[index] + 1) {
-            e.target.style.color = 'lightcoral';
+            e.target.style.color = 'indianred';
             e.target.style.fontWeight = 'normal';
         } else if (Number(e.target.value) === holes[index]) {
             e.target.style.color = 'black';
             e.target.style.fontWeight = 'normal';
         }
+        // auto tab to next input
+        autoTab(e, index);
 
+        // update numbers on scorecard
         let oldScore = p1Scorecard[index];
         let oldTotal = (index < 9) ? p1FrontNineTotal : p1BackNineTotal;
         let scores = p1Scorecard;
@@ -88,6 +110,7 @@ const Scorecard: React.FC<ScorecardProps> = () => {
         });
         if (result) history.push('/');
     }
+
 
     return (
         <>
@@ -142,26 +165,26 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                                     <td className="align-middle text-center">{frontNinePar + backNinePar}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Regan Loper</th>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 0)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 1)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 2)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 3)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 4)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 5)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 6)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 7)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 8)} /></td>
+                                    <th scope="row" className="align-middle">Regan</th>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[0]} onChange={(e) => updateScorecard(e, 0)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[1]} onChange={(e) => updateScorecard(e, 1)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[2]} onChange={(e) => updateScorecard(e, 2)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[3]} onChange={(e) => updateScorecard(e, 3)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[4]} onChange={(e) => updateScorecard(e, 4)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[5]} onChange={(e) => updateScorecard(e, 5)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[6]} onChange={(e) => updateScorecard(e, 6)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[7]} onChange={(e) => updateScorecard(e, 7)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[8]} onChange={(e) => updateScorecard(e, 8)} /></td>
                                     <td className="align-middle text-center">{p1FrontNineTotal}</td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 9)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 10)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 11)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 12)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 13)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 14)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 15)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 16)} /></td>
-                                    <td className="align-middle text-center"><input type="number" onChange={(e) => updateScorecard(e, 17)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[9]} onChange={(e) => updateScorecard(e, 9)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[10]} onChange={(e) => updateScorecard(e, 10)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[11]} onChange={(e) => updateScorecard(e, 11)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[12]} onChange={(e) => updateScorecard(e, 12)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[13]} onChange={(e) => updateScorecard(e, 13)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[14]} onChange={(e) => updateScorecard(e, 14)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[15]} onChange={(e) => updateScorecard(e, 15)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[16]} onChange={(e) => updateScorecard(e, 16)} /></td>
+                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[17]} onChange={(e) => updateScorecard(e, 17)} /></td>
                                     <td className="align-middle text-center">{p1BackNineTotal}</td>
                                     <td className="align-middle text-center">{score}</td>
                                 </tr>

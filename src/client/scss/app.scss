@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
 $theme-colors: (
     'primary': #6b966e,
@@ -146,8 +147,11 @@ table input {
     margin: 0; 
     border: 0; 
     width: 100%;
+    text-align: center;
     background-color: transparent;
+    font-family: 'Oswald', sans-serif;
 }
+
 
 table {
     font-family: 'Libre Franklin', sans-serif;
