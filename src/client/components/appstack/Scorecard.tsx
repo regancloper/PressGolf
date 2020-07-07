@@ -126,7 +126,7 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                         <div className="text-center">Course Rating: {location.state.courseRating} | Slope: {location.state.slope}</div>
                     </div>
 
-                    <div id="scrollable">
+                    <div className="scrollable">
                         <form>
                             <table className="table table-bordered">
                                 <thead>
