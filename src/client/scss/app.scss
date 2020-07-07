@@ -155,6 +155,9 @@ table input {
 
 table {
     font-family: 'Libre Franklin', sans-serif;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
     
 
