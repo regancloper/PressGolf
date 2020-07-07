@@ -19,7 +19,7 @@
     background-position: center;
 }
 
-table {
+#scrollable {
     white-space:nowrap;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;  

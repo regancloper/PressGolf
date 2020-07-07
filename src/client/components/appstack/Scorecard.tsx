@@ -126,74 +126,75 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                         <div className="text-center">Course Rating: {location.state.courseRating} | Slope: {location.state.slope}</div>
                     </div>
 
-                    <form>
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Hole</th>
-                                    <th scope="col">1</th>
-                                    <th scope="col">2</th>
-                                    <th scope="col">3</th>
-                                    <th scope="col">4</th>
-                                    <th scope="col">5</th>
-                                    <th scope="col">6</th>
-                                    <th scope="col">7</th>
-                                    <th scope="col">8</th>
-                                    <th scope="col">9</th>
-                                    <th scope="col">Out</th>
-                                    <th scope="col">10</th>
-                                    <th scope="col">11</th>
-                                    <th scope="col">12</th>
-                                    <th scope="col">13</th>
-                                    <th scope="col">14</th>
-                                    <th scope="col">15</th>
-                                    <th scope="col">16</th>
-                                    <th scope="col">17</th>
-                                    <th scope="col">18</th>
-                                    <th scope="col">In</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Par</th>
-                                    {holes.slice(0, 9).map((hole, index) => (
-                                        <td key={`front-${index}`} className="align-middle text-center">{hole}</td>
-                                    ))}
-                                    <td className="align-middle text-center">{frontNinePar}</td>
-                                    {holes.slice(9).map((hole, index) => (
-                                        <td key={`back-${index}`} className="align-middle text-center">{hole}</td>
-                                    ))}
-                                    <td className="align-middle text-center">{backNinePar}</td>
-                                    <td className="align-middle text-center">{frontNinePar + backNinePar}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" className="align-middle">Regan</th>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[0]} onChange={(e) => updateScorecard(e, 0)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[1]} onChange={(e) => updateScorecard(e, 1)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[2]} onChange={(e) => updateScorecard(e, 2)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[3]} onChange={(e) => updateScorecard(e, 3)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[4]} onChange={(e) => updateScorecard(e, 4)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[5]} onChange={(e) => updateScorecard(e, 5)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[6]} onChange={(e) => updateScorecard(e, 6)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[7]} onChange={(e) => updateScorecard(e, 7)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[8]} onChange={(e) => updateScorecard(e, 8)} /></td>
-                                    <td className="align-middle text-center">{p1FrontNineTotal}</td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[9]} onChange={(e) => updateScorecard(e, 9)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[10]} onChange={(e) => updateScorecard(e, 10)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[11]} onChange={(e) => updateScorecard(e, 11)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[12]} onChange={(e) => updateScorecard(e, 12)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[13]} onChange={(e) => updateScorecard(e, 13)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[14]} onChange={(e) => updateScorecard(e, 14)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[15]} onChange={(e) => updateScorecard(e, 15)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[16]} onChange={(e) => updateScorecard(e, 16)} /></td>
-                                    <td className="align-middle text-center"><input type="number" ref={inputRefs[17]} onChange={(e) => updateScorecard(e, 17)} /></td>
-                                    <td className="align-middle text-center">{p1BackNineTotal}</td>
-                                    <td className="align-middle text-center">{score}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        {/* <table className="table table-bordered d-none">
+                    <div id="scrollable">
+                        <form>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Hole</th>
+                                        <th scope="col">1</th>
+                                        <th scope="col">2</th>
+                                        <th scope="col">3</th>
+                                        <th scope="col">4</th>
+                                        <th scope="col">5</th>
+                                        <th scope="col">6</th>
+                                        <th scope="col">7</th>
+                                        <th scope="col">8</th>
+                                        <th scope="col">9</th>
+                                        <th scope="col">Out</th>
+                                        <th scope="col">10</th>
+                                        <th scope="col">11</th>
+                                        <th scope="col">12</th>
+                                        <th scope="col">13</th>
+                                        <th scope="col">14</th>
+                                        <th scope="col">15</th>
+                                        <th scope="col">16</th>
+                                        <th scope="col">17</th>
+                                        <th scope="col">18</th>
+                                        <th scope="col">In</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Par</th>
+                                        {holes.slice(0, 9).map((hole, index) => (
+                                            <td key={`front-${index}`} className="align-middle text-center">{hole}</td>
+                                        ))}
+                                        <td className="align-middle text-center">{frontNinePar}</td>
+                                        {holes.slice(9).map((hole, index) => (
+                                            <td key={`back-${index}`} className="align-middle text-center">{hole}</td>
+                                        ))}
+                                        <td className="align-middle text-center">{backNinePar}</td>
+                                        <td className="align-middle text-center">{frontNinePar + backNinePar}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" className="align-middle">Regan</th>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[0]} onChange={(e) => updateScorecard(e, 0)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[1]} onChange={(e) => updateScorecard(e, 1)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[2]} onChange={(e) => updateScorecard(e, 2)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[3]} onChange={(e) => updateScorecard(e, 3)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[4]} onChange={(e) => updateScorecard(e, 4)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[5]} onChange={(e) => updateScorecard(e, 5)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[6]} onChange={(e) => updateScorecard(e, 6)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[7]} onChange={(e) => updateScorecard(e, 7)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[8]} onChange={(e) => updateScorecard(e, 8)} /></td>
+                                        <td className="align-middle text-center">{p1FrontNineTotal}</td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[9]} onChange={(e) => updateScorecard(e, 9)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[10]} onChange={(e) => updateScorecard(e, 10)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[11]} onChange={(e) => updateScorecard(e, 11)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[12]} onChange={(e) => updateScorecard(e, 12)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[13]} onChange={(e) => updateScorecard(e, 13)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[14]} onChange={(e) => updateScorecard(e, 14)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[15]} onChange={(e) => updateScorecard(e, 15)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[16]} onChange={(e) => updateScorecard(e, 16)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[17]} onChange={(e) => updateScorecard(e, 17)} /></td>
+                                        <td className="align-middle text-center">{p1BackNineTotal}</td>
+                                        <td className="align-middle text-center">{score}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {/* <table className="table table-bordered d-none">
                             <thead>
                                 <tr>
                                     <th scope="row">Hole</th>
@@ -235,7 +236,9 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                                 </tr>
                             </tbody>
                         </table> */}
-                    </form>
+                        </form>
+                    </div>
+
                     <div className="d-flex justify-content-center">
                         <button
                             className="btn btn-primary"
