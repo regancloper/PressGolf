@@ -193,7 +193,7 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                                 </tr>
                             </tbody>
                         </table>
-                        <table className="table table-bordered d-none">
+                        {/* <table className="table table-bordered d-none">
                             <thead>
                                 <tr>
                                     <th scope="row">Hole</th>
@@ -234,7 +234,7 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                                     <td className="align-middle text-center">{score}</td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> */}
                     </form>
                     <div className="d-flex justify-content-center">
                         <button
