@@ -18,10 +18,3 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-
-#scrollable {
-    white-space:nowrap;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;  
-}
-

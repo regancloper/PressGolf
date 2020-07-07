@@ -156,8 +156,10 @@ table input {
 #scrollable {
     font-family: 'Libre Franklin', sans-serif;
     display: block;
-    overflow-x: auto;
     white-space: nowrap;
+    overflow-x: scroll;
+    max-width: 100vw;
+    -webkit-overflow-scrolling: touch;
 }
     
 
