@@ -19,29 +19,9 @@
     background-position: center;
 }
 
-
-:root {
-    --scrollbar-track-color: transparent;
-    --scrollbar-color: rgba(0,0,0,.2);
-  
-    --scrollbar-size: .375rem;
-    --scrollbar-minlength: 1.5rem; /* Minimum length of scrollbar thumb (width of horizontal, height of vertical) */
-  }
-  .right-off-canvas-menu::-webkit-scrollbar {
-    height: var(--scrollbar-size);
-    width: var(--scrollbar-size);
-  }
-  .right-off-canvas-menu::-webkit-scrollbar-track {
-    background-color: var(--scrollbar-track-color);
-  }
-  .right-off-canvas-menu::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-color);
-    /* Add :hover, :active as needed */
-  }
-  .right-off-canvas-menu::-webkit-scrollbar-thumb:vertical {
-    min-height: var(--scrollbar-minlength);
-  }
-  .right-off-canvas-menu::-webkit-scrollbar-thumb:horizontal {
-    min-width: var(--scrollbar-minlength);
-  }
+table {
+    white-space:nowrap;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;  
+}
 
