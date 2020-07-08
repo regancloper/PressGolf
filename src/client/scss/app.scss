@@ -161,8 +161,12 @@ table input {
 
 table {
     font-family: 'Libre Franklin', sans-serif;
+    -webkit-focus-ring-color: none
 }
     
+input:focus {
+    outline: none;
+}
 
 
 .table > tbody > tr > td {
