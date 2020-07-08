@@ -161,13 +161,17 @@ table input {
 
 table {
     font-family: 'Libre Franklin', sans-serif;
-    -webkit-focus-ring-color: none
+    -webkit-focus-ring-color: none;
 }
+
     
 input:focus {
     outline: none;
 }
 
+.extra-width {
+    min-width: 42px;
+}
 
 .table > tbody > tr > td {
     padding: 0;

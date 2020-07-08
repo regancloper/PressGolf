@@ -118,7 +118,8 @@ const Scorecard: React.FC<ScorecardProps> = () => {
     return (
         <>
             <Header color='header-dark' loggedIn={true} />
-            <div className="container" style={{ marginTop: '8rem' }}>
+
+            <div className="container" style={{ paddingTop: '6rem' }}>
                 <div className="container">
                     <div className="py-3 d-flex flex-column">
 
@@ -128,31 +129,31 @@ const Scorecard: React.FC<ScorecardProps> = () => {
 
                     <div className="scrollable">
                         <form>
-                            <table className="table table-bordered">
+                            <table className="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Hole</th>
-                                        <th scope="col">1</th>
-                                        <th scope="col">2</th>
-                                        <th scope="col">3</th>
-                                        <th scope="col">4</th>
-                                        <th scope="col">5</th>
-                                        <th scope="col">6</th>
-                                        <th scope="col">7</th>
-                                        <th scope="col">8</th>
-                                        <th scope="col">9</th>
-                                        <th scope="col">Out</th>
-                                        <th scope="col">10</th>
-                                        <th scope="col">11</th>
-                                        <th scope="col">12</th>
-                                        <th scope="col">13</th>
-                                        <th scope="col">14</th>
-                                        <th scope="col">15</th>
-                                        <th scope="col">16</th>
-                                        <th scope="col">17</th>
-                                        <th scope="col">18</th>
-                                        <th scope="col">In</th>
-                                        <th scope="col">Total</th>
+                                        <th scope="col" className="align-middle text-center extra-width">1</th>
+                                        <th scope="col" className="align-middle text-center extra-width">2</th>
+                                        <th scope="col" className="align-middle text-center extra-width">3</th>
+                                        <th scope="col" className="align-middle text-center extra-width">4</th>
+                                        <th scope="col" className="align-middle text-center extra-width">5</th>
+                                        <th scope="col" className="align-middle text-center extra-width">6</th>
+                                        <th scope="col" className="align-middle text-center extra-width">7</th>
+                                        <th scope="col" className="align-middle text-center extra-width">8</th>
+                                        <th scope="col" className="align-middle text-center extra-width">9</th>
+                                        <th scope="col" className="align-middle text-center extra-width">Out</th>
+                                        <th scope="col" className="align-middle text-center extra-width">10</th>
+                                        <th scope="col" className="align-middle text-center extra-width">11</th>
+                                        <th scope="col" className="align-middle text-center extra-width">12</th>
+                                        <th scope="col" className="align-middle text-center extra-width">13</th>
+                                        <th scope="col" className="align-middle text-center extra-width">14</th>
+                                        <th scope="col" className="align-middle text-center extra-width">15</th>
+                                        <th scope="col" className="align-middle text-center extra-width">16</th>
+                                        <th scope="col" className="align-middle text-center extra-width">17</th>
+                                        <th scope="col" className="align-middle text-center extra-width">18</th>
+                                        <th scope="col" className="align-middle text-center extra-width">In</th>
+                                        <th scope="col" className="align-middle text-center extra-width">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
