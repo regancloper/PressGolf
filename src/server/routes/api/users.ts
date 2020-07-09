@@ -15,4 +15,16 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/:id', async (req, res) => {
+    let id = Number(req.params.id);
+    let index = req.body.index;
+    try {
+        let user = await DB.Users.updateIndex(id, index);
+        res.json(user);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
 export default router;

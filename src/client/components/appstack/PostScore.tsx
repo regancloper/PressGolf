@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import { apiService } from '../../utils/api';
-import { findWithId, calculateDiff } from '../../utils/calculations';
+import { findWithId, calculateDiff, calculateIndex } from '../../utils/calculations';
 import Header from '../Header';
 import { useHistory, Link } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import { TableScore } from '../../utils/types';
 
 interface PostScoreProps { }
 
@@ -82,6 +83,8 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
 
     const handlePostedScore = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // calculate differential and post new score to scores DB
         let differential = calculateDiff(score, courseRating, slope);
         let result = await apiService('/api/scores', 'POST', {
             userid: user.userid,
@@ -92,8 +95,19 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
             teeGender
         });
 
+        // get all scores (including new) and make a post request to user DB with new score and update index
+        let scores = await apiService(`/api/scores/${user.userid}`);
+        const diffArray: number[] = [];
+        scores.forEach((score: TableScore) => {
+            diffArray.push(score.differential);
+        });
+        let index = calculateIndex(diffArray);
+        if (typeof index === 'number') {
+            index = Math.round(index * 10) / 10;
+            await apiService(`/api/users/${user.userid}`, 'POST', { index });
+        } 
+
         if (result) {
-            console.log(result);
             history.push('/');
         }
     }
@@ -155,7 +169,7 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
                         <button
                             type="submit"
                             className="btn btn-primary rounded-0"
-                            disabled={selectedCourse === null || selectedTee ===  null || score === null}
+                            disabled={selectedCourse === null || selectedTee === null || score === null}
                         >
                             Post Score
                         </button>
@@ -191,13 +205,6 @@ interface TeeBox {
     slopeRating: number;
 }
 
-// interface RawCourseData {
-//     id: number,
-//     clubname: string,
-//     city: string,
-//     state: string,
-//     [index: string]: string | number
-// }
 
 export default PostScore;
 

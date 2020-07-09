@@ -3,8 +3,9 @@ import Header from '../Header';
 import '../../scss/app';
 import { useLocation, useHistory } from 'react-router-dom';
 import { apiService } from '../../utils/api';
-import { calculateDiff } from '../../utils/calculations';
+import { calculateDiff, calculateIndex } from '../../utils/calculations';
 import { AuthContext } from '../providers/AuthProvider';
+import { TableScore } from '../../utils/types';
 
 interface ScorecardProps { }
 
@@ -119,6 +120,19 @@ const Scorecard: React.FC<ScorecardProps> = () => {
             teeName: location.state.selectedTee,
             teeGender: location.state.teeGender
         });
+
+        // get all scores (including new) and make a post request to user DB with new score and update index
+        let scores = await apiService(`/api/scores/${user.userid}`);
+        const diffArray: number[] = [];
+        scores.forEach((score: TableScore) => {
+            diffArray.push(score.differential);
+        });
+        let index = calculateIndex(diffArray);
+        if (typeof index === 'number') {
+            index = Math.round(index * 10) / 10;
+            await apiService(`/api/users/${user.userid}`, 'POST', { index });
+        } 
+
         if (result) history.push('/');
     }
 

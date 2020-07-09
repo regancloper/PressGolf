@@ -9,11 +9,14 @@ const findOneById = async (id: number) => Query('SELECT * FROM users WHERE id = 
 
 const insert = async (user: IUser) => Query('INSERT INTO users SET ?', user);
 
+const updateIndex = async (userid: number, index: number) => Query<{ affectedRows: number }>('UPDATE users SET `index` = ? WHERE id = ?', [index, userid]);
+
 export default {
     getUser,
     findOneByEmail,
     findOneById,
-    insert
+    insert, 
+    updateIndex
 }
 
 interface IUser {

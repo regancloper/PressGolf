@@ -9,3 +9,15 @@ export interface Player {
     lastname: string;
     index: number;
 }
+
+export interface TableScore {
+    id: number;
+    userid: number;
+    courseid: number;
+    teeName: string;
+    teeGender: string;
+    score: number;
+    differential: number;
+    _created: string;
+    clubname: string;
+}

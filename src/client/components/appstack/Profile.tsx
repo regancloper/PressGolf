@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import '../../scss/app';
 import { Link } from 'react-router-dom';
 import { apiService } from '../../utils/api';
-import { Score, Player } from '../../utils/types';
-import { calculateIndex } from '../../utils/calculations';
+import { Player } from '../../utils/types';
 import { AuthContext } from '../providers/AuthProvider';
 import Header from '../Header';
 import ScoreTable from './ScoreTable';
@@ -28,15 +27,6 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
         try {
             let player = await apiService(`/api/users/${user.userid}`);
             setPlayer(player);
-            // let scores = await apiService(`/api/scores/${user.userid}`);
-            // setScores(scores);
-            // const diffArray: number[] = [];
-            // scores.forEach((score: Score) => {
-            //     diffArray.push(score.differential);
-            // });
-            // let index = calculateIndex(diffArray);
-            // if (typeof index === 'number') index = Math.round(index * 10) / 10;
-            // setIndex(index);
         } catch (error) {
             console.log(error);
         }
@@ -57,7 +47,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                 <div className="card-body p-0">
                                     <div id="index-card-top">
                                         <h2 className="card-title my-3">{player.firstname} {player.lastname}</h2>
-                                        <p className="card-text my-2">Index: 5.1</p>
+                                        <p className="card-text my-2">Index: {player.index || 'NI'}</p>
                                     </div>
 
                                     <div className="d-flex align-items-center justify-content-between" id="index-card-bottom">
@@ -88,16 +78,6 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                         <ScoreTable userid={user.userid} />
                     </div>
 
-
-                    {/* <div className="row my-3">
-                        <div className="col">
-                            <div className="score-container">
-                                {scores.map(score => (
-                                    <div key={score.id} className="score shadow">{score.score}</div>
-                                ))}
-                            </div>
-                        </div>
-                    </div> */}
 
                 </div>
             </div>
