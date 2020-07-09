@@ -26,7 +26,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({ userid }) => {
                     <tr>
                         {/* <th scope="col">#</th> */}
                         <th scope="col" className="pl-0">Course</th>
-                        <th scope="col" className="pl-0">Score</th>
+                        <th scope="col">Score</th>
                         <th scope="col" className="pl-0">Diff.</th>
                         <th scope="col" className="pl-0">Date</th>
                     </tr>
@@ -36,7 +36,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({ userid }) => {
                         <tr key={`scoretable-${index}`}>
                             {/* <th scope="row">{(index + 1)}</th> */}
                             <td className="align-middle">{scoreDTO.clubname}</td>
-                            <td className="align-middle">{scoreDTO.score}</td>
+                            <td className="align-middle text-center">{scoreDTO.score}</td>
                             <td className="align-middle">{scoreDTO.differential}</td>
                             <td className="align-middle">{moment(scoreDTO._created).utc().format("MMM. D, YYYY")}</td>
                         </tr>
