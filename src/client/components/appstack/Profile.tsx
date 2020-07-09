@@ -62,8 +62,8 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
 
                                     <div className="d-flex align-items-center justify-content-between" id="index-card-bottom">
                                         <div className="h-100 w-100 d-flex align-items-stretch">
-                                            <Link className="w-50 btn-sm btn-info d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 0 20px' }} to="/setup">Play</Link>
-                                            <Link className="w-50 btn-sm btn-primary d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 20px 0' }} to="/post">Post Score</Link>
+                                            <Link className="w-50 btn-sm btn-dark d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 0 20px' }} to="/setup">Play</Link>
+                                            <Link className="w-50 btn-sm btn-light d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 20px 0' }} to="/post">Post Score</Link>
                                         </div>
 
                                     </div>

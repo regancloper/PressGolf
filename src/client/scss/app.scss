@@ -43,7 +43,7 @@ $theme-colors: (
 #index-card {
     border-radius: 20px;
     font-family: 'Raleway';
-    background-color: rgba(181, 231, 247, 0.555);
+    background-color: rgba(135, 207, 235, 0.699);
     border: none;
 }
 
@@ -189,6 +189,10 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.btn-sm:hover {
+    text-decoration: none;
 }
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
