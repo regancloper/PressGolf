@@ -58,7 +58,7 @@ const Scorecard: React.FC<ScorecardProps> = () => {
         if (e.target.value.length > 0 && e.target.value !== '1' && index < 17) {
             elem = inputRefs[index + 1];
             elem.current.focus();
-        }
+        } 
     };
 
     const updateScorecard = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -99,6 +99,14 @@ const Scorecard: React.FC<ScorecardProps> = () => {
         if (!(p1Scorecard.includes(null) || p1Scorecard.includes(0))) setScoreComplete(true);
         if (Number(e.target.value) < 1) setScoreComplete(false);
     }
+
+    // const checkForBackspace = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    //     let elem = inputRefs[index];
+    //     if ((e.keyCode === 8 || e.keyCode === 46) && !(elem.current.value)) {
+    //         elem = inputRefs[index - 1]
+    //         elem.current.focus();
+    //     }
+    // }
 
     const handlePostedScore = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -182,14 +190,14 @@ const Scorecard: React.FC<ScorecardProps> = () => {
                                         <td className="align-middle text-center"><input type="number" ref={inputRefs[8]} onChange={(e) => updateScorecard(e, 8)} /></td>
                                         <td className="align-middle text-center">{p1FrontNineTotal}</td>
                                         <td className="align-middle text-center"><input type="number" ref={inputRefs[9]} onChange={(e) => updateScorecard(e, 9)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[10]} onChange={(e) => updateScorecard(e, 10)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[11]} onChange={(e) => updateScorecard(e, 11)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[12]} onChange={(e) => updateScorecard(e, 12)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[13]} onChange={(e) => updateScorecard(e, 13)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[14]} onChange={(e) => updateScorecard(e, 14)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[15]} onChange={(e) => updateScorecard(e, 15)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[16]} onChange={(e) => updateScorecard(e, 16)} /></td>
-                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[17]} onChange={(e) => updateScorecard(e, 17)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[10]}  onChange={(e) => updateScorecard(e, 10)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[11]}  onChange={(e) => updateScorecard(e, 11)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[12]}  onChange={(e) => updateScorecard(e, 12)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[13]}  onChange={(e) => updateScorecard(e, 13)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[14]}  onChange={(e) => updateScorecard(e, 14)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[15]}  onChange={(e) => updateScorecard(e, 15)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[16]}  onChange={(e) => updateScorecard(e, 16)} /></td>
+                                        <td className="align-middle text-center"><input type="number" ref={inputRefs[17]}  onChange={(e) => updateScorecard(e, 17)} /></td>
                                         <td className="align-middle text-center">{p1BackNineTotal}</td>
                                         <td className="align-middle text-center">{score}</td>
                                     </tr>

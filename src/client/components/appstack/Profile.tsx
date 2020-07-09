@@ -7,6 +7,7 @@ import { Score, Player } from '../../utils/types';
 import { calculateIndex } from '../../utils/calculations';
 import { AuthContext } from '../providers/AuthProvider';
 import Header from '../Header';
+import ScoreTable from './ScoreTable';
 
 interface ProfileProps { }
 
@@ -14,28 +15,28 @@ interface ProfileProps { }
 export const Profile: React.FC<ProfileProps> = ({ }) => {
     const { user } = useContext(AuthContext);
 
-    const [scores, setScores] = useState<Score[]>([]);
+    // const [scores, setScores] = useState<Score[]>([]);
     const [player, setPlayer] = useState<Player>({
         firstname: null,
         lastname: null,
         index: null
     });
-    const [index, setIndex] = useState<string | number>('NI');
+    // const [index, setIndex] = useState<string | number>('NI');
 
     const getData = async () => {
         // make api request to server to get user and scores for said user
         try {
             let player = await apiService(`/api/users/${user.userid}`);
             setPlayer(player);
-            let scores = await apiService(`/api/scores/${user.userid}`);
-            setScores(scores);
-            const diffArray: number[] = [];
-            scores.forEach((score: Score) => {
-                diffArray.push(score.differential);
-            });
-            let index = calculateIndex(diffArray);
-            if (typeof index === 'number') index = Math.round(index * 10) / 10;
-            setIndex(index);
+            // let scores = await apiService(`/api/scores/${user.userid}`);
+            // setScores(scores);
+            // const diffArray: number[] = [];
+            // scores.forEach((score: Score) => {
+            //     diffArray.push(score.differential);
+            // });
+            // let index = calculateIndex(diffArray);
+            // if (typeof index === 'number') index = Math.round(index * 10) / 10;
+            // setIndex(index);
         } catch (error) {
             console.log(error);
         }
@@ -56,12 +57,12 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                 <div className="card-body p-0">
                                     <div id="index-card-top">
                                         <h2 className="card-title my-3">{player.firstname} {player.lastname}</h2>
-                                        <p className="card-text my-2">Index: {index}</p>
+                                        <p className="card-text my-2">Index: 5.1</p>
                                     </div>
 
                                     <div className="d-flex align-items-center justify-content-between" id="index-card-bottom">
                                         <div className="h-100 w-100 d-flex align-items-stretch">
-                                            <Link className="w-50 btn-sm btn-info d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 0 20px' }}to="/setup">Play</Link>
+                                            <Link className="w-50 btn-sm btn-info d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 0 20px' }} to="/setup">Play</Link>
                                             <Link className="w-50 btn-sm btn-primary d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 20px 0' }} to="/post">Post Score</Link>
                                         </div>
 
@@ -71,45 +72,9 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                         </div>
                         <div className="col-md-6 mb-3">
                             <div className="card profile-card shadow-lg" id="friend-card">
-                                <div className="card-body p-0">
+                                <div className="card-body p-0 d-flex justify-content-center align-items-center">
                                     <div>
-                                        <table className="table table-sm table-light table-striped table-hover" id="table-top">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Friend</th>
-                                                    <th scope="col">Index</th>
-                                                    <th scope="col">Trending</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Irving Jones</td>
-                                                    <td>8.0</td>
-                                                    <td>+1.2</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Greg Pipes</td>
-                                                    <td>12.5</td>
-                                                    <td>-0.8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tyler Windham</td>
-                                                    <td>16.2</td>
-                                                    <td>+1.2</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Josh Jones</td>
-                                                    <td>24.2</td>
-                                                    <td>+5.0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tom Jones</td>
-                                                    <td>18.5</td>
-                                                    <td>+3.5</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <Link className="btn-sm btn-success py-0 mx-4 profile-btn" to="/post">Add Friend</Link>
+                                        Add Friend
                                     </div>
 
 
@@ -118,7 +83,13 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                         </div>
                     </div>
 
-                    <div className="row my-3">
+
+                    <div>
+                        <ScoreTable userid={user.userid} />
+                    </div>
+
+
+                    {/* <div className="row my-3">
                         <div className="col">
                             <div className="score-container">
                                 {scores.map(score => (
@@ -126,7 +97,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
