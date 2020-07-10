@@ -6,6 +6,8 @@ import Users from './queries/users';
 import Tokens from './queries/tokens';
 import Scores from './queries/scores';
 import Courses from './queries/courses';
+import AddFriend from './queries/addfriend';
+import Friends from './queries/friends';
 
 // node - mysql connection pool
 export const pool = mysql.createPool(config.mysql);
@@ -32,5 +34,7 @@ export default {
     Users,
     Tokens,
     Scores,
-    Courses
+    Courses,
+    AddFriend,
+    Friends
 }

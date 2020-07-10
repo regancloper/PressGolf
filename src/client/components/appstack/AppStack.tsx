@@ -4,6 +4,7 @@ import Profile from './Profile';
 import PostScore from './PostScore';
 import Scorecard from './Scorecard';
 import PlaySetup from './PlaySetup';
+import AddFriend from './AddFriend';
 
 
 const AppStack: React.FC<AppStackProps> = () => {
@@ -19,6 +20,9 @@ const AppStack: React.FC<AppStackProps> = () => {
 				</Route>
 				<Route exact path="/setup">
 					<PlaySetup />
+				</Route>
+				<Route exact path="/addfriend">
+					<AddFriend />
 				</Route>
 				<Route path="/">
 					<Profile />

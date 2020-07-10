@@ -73,7 +73,7 @@ const PostScore: React.FC<PostScoreProps> = ({ }) => {
         }
     }
 
-    const handleTeeSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleTeeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let teeObject: TeeBox = JSON.parse(e.target.value);
         setSelectedTee(teeObject.name);
         setSlope(Number(teeObject.slopeRating));

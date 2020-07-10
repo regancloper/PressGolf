@@ -20,11 +20,10 @@ const ScoreTable: React.FC<ScoreTableProps> = ({ userid }) => {
     }, []);
 
     return (
-        <div style={{ lineHeight: '0.2rem' }}>
+        <div>
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        {/* <th scope="col">#</th> */}
                         <th scope="col" className="pl-0">Course</th>
                         <th scope="col">Score</th>
                         <th scope="col" className="pl-0">Diff.</th>
@@ -34,7 +33,6 @@ const ScoreTable: React.FC<ScoreTableProps> = ({ userid }) => {
                 <tbody>
                     {scores.map((scoreDTO, index) => (
                         <tr key={`scoretable-${index}`}>
-                            {/* <th scope="row">{(index + 1)}</th> */}
                             <td className="align-middle">{scoreDTO.clubname}</td>
                             <td className="align-middle">{scoreDTO.score}</td>
                             <td className="align-middle">{scoreDTO.differential}</td>
