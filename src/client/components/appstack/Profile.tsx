@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import '../../scss/app';
 import { Link } from 'react-router-dom';
 import { apiService } from '../../utils/api';
-import { PlayerProfile } from '../../utils/types';
+import { PlayerProfile, Friend } from '../../utils/types';
 import { AuthContext } from '../providers/AuthProvider';
 import Header from '../Header';
 import ScoreTable from './ScoreTable';
@@ -21,7 +21,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
         lastname: null,
         index: null
     });
-    const [friends, setFriends] = useState([]);
+    const [friends, setFriends] = useState<Friend[]>([]);
     const [showFriends, setShowFriends] = useState(true);
 
     const getData = async () => {
@@ -29,7 +29,7 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
         try {
             let player = await apiService<PlayerProfile>(`/api/users/${user.userid}`);
             if (player) setPlayer(player);
-            let friends = await apiService(`/api/friends/${user.userid}`);
+            let friends = await apiService<Friend[]>(`/api/friends/${user.userid}`);
             if (friends) setFriends(friends);
         } catch (error) {
             console.log(error);
@@ -38,12 +38,8 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [showFriends]);
 
-    const handleAddFriendClick = () => {
-        let showFriendTable = !(showFriends);
-        setShowFriends(showFriendTable);
-    }
 
     return (
         <>
@@ -61,7 +57,18 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
 
                                     <div className="d-flex align-items-center justify-content-between" id="index-card-bottom">
                                         <div className="h-100 w-100 d-flex align-items-stretch">
-                                            <Link className="w-50 no-und btn-dark d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 0 20px' }} to="/setup">Play</Link>
+                                            <Link
+                                                className="w-50 no-und btn-dark d-flex justify-content-center align-items-center"
+                                                style={{ borderRadius: '0 0 0 20px' }}
+                                                to={{
+                                                    pathname: "/setup",
+                                                    state: {
+                                                        friends
+                                                    }
+                                                }}
+                                            >
+                                                Play
+                                            </Link>
                                             <Link className="w-50 no-und btn-light d-flex justify-content-center align-items-center" style={{ borderRadius: '0 0 20px 0' }} to="/post">Post Score</Link>
                                         </div>
 
@@ -77,14 +84,14 @@ export const Profile: React.FC<ProfileProps> = ({ }) => {
                                             <button
                                                 className="w-50 bg-white text-success border-0 d-flex justify-content-center align-items-center"
                                                 style={{ borderRadius: '20px 0 0 0' }}
-                                                onClick={handleAddFriendClick}
+                                                onClick={() => { if (!showFriends) setShowFriends(true) }}
                                             >
                                                 Friends
                                             </button>
                                             <button
                                                 className="w-50 btn-success border-0 d-flex justify-content-center align-items-center"
                                                 style={{ borderRadius: '0 20px 0 0' }}
-                                                onClick={handleAddFriendClick}
+                                                onClick={() => { if (showFriends) setShowFriends(false) }}
                                             >
                                                 Add Friend
                                             </button>

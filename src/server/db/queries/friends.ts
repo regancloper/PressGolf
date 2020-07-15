@@ -1,12 +1,12 @@
 import { Query } from '../index';
 
 const getFriends = async (id: number) => Query<Friend[]>(
-    `SELECT f.user1, u.firstname, u.lastname, u.index
+    `SELECT f.user1 as userid, u.firstname, u.lastname, u.index
     FROM friends f
     JOIN users u ON f.user1 = u.id
     WHERE user2 = ?
     UNION ALL
-    SELECT f.user2, u.firstname, u.lastname, u.index
+    SELECT f.user2 as userid, u.firstname, u.lastname, u.index
     FROM friends f
     JOIN users u ON f.user2 = u.id
     WHERE user1 = ?`, [id, id]);

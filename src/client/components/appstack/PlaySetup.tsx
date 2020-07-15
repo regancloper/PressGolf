@@ -3,13 +3,15 @@ import { useState, useEffect } from 'react';
 import { apiService } from '../../utils/api';
 import { findWithId } from '../../utils/calculations';
 import Header from '../Header';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Friend } from '../../utils/types';
 
 
 interface PlaySetupProps { }
 
 const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
     const history = useHistory();
+    const location = useLocation<{friends: Friend[]}>();
 
     const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
     const [selectedCourseName, setSelectedCourseName] = useState<string>(null);
@@ -19,6 +21,7 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
     const [courseRating, setCourseRating] = useState<number>(null);
     const [teeGender, setTeeGender] = useState<string>(null);
     const [courses, setCourses] = useState<GolfCourse[]>([]);
+    const [playingPartner, setPlayingPartner] = useState<Friend | null>(null);
 
 
     const getData = async () => {
@@ -50,7 +53,6 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
                         tees: courseTees
                     }
                     courses.push(courseObj);
-
                 });
                 setCourses(courses);
             }
@@ -60,11 +62,11 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
         }
     }
 
-    const handleCourseSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleCourseSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let input: GolfCourse = JSON.parse(e.target.value);
         setSelectedCourseId(input.id);
         setSelectedCourseName(input.clubname);
-        if (input.id === 0) {
+        if (!input.id) {
             setTeeBoxOptions([])
         } else {
             let index = findWithId(courses, input.id)
@@ -72,12 +74,17 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
         }
     }
 
-    const handleTeeSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleTeeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let teeObject: TeeBox = JSON.parse(e.target.value);
         setSelectedTee(teeObject.name);
         setSlope(Number(teeObject.slopeRating));
         setCourseRating(Number(teeObject.courseRating));
         setTeeGender(teeObject.gender);
+    }
+
+    const handleFriendSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        let friendObject: Friend = JSON.parse(e.target.value);
+        setPlayingPartner(friendObject);
     }
 
 
@@ -112,7 +119,7 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
                             onChange={handleTeeSelect}
                             disabled={!(selectedCourseId) || (selectedCourseId === 0)}
                         >
-                            <option>--Select One--</option>
+                            <option value='0'>--Select One--</option>
                             {teeBoxOptions.map(teeBox => {
                                 return (
                                     <option
@@ -120,6 +127,27 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
                                         value={JSON.stringify(teeBox)}
                                     >
                                         {teeBox.name} - ({teeBox.courseRating} / {teeBox.slopeRating}) ({teeBox.gender})
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Playing With:</label>
+                        <select
+                            className="form-control"
+                            onChange={handleFriendSelect}
+                            disabled={!(selectedCourseId) || (selectedCourseId === 0) || !(selectedTee)}
+                        >
+                            <option>--Select One--</option>
+                            {location.state.friends.map(friend => {
+                                return (
+                                    <option
+                                        key={friend.userid}
+                                        value={JSON.stringify(friend)}
+                                    >
+                                        {friend.firstname} {friend.lastname}
                                     </option>
                                 );
                             })}
@@ -138,7 +166,8 @@ const PlaySetup: React.FC<PlaySetupProps> = ({ }) => {
                             slope,
                             courseRating,
                             teeGender,
-                            selectedTee
+                            selectedTee,
+                            playingPartner
                         })}
                     >
                         Start Round

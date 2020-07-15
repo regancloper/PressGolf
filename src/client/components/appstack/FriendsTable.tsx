@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Friend } from '../../utils/types';
 
 
 const FriendsTable: React.FC<FriendsTableProps> = ({ friends }) => {
@@ -14,7 +14,7 @@ const FriendsTable: React.FC<FriendsTableProps> = ({ friends }) => {
                 </thead>
                 <tbody>
                     {friends.map((friend) => (
-                        <tr key={`friends-${friend.user1}`}>
+                        <tr key={`friends-${friend.userid}`}>
                             <td>{friend.firstname} {friend.lastname}</td>
                             <td>{(friend.index || 'NI')}</td>
                         </tr>
@@ -29,11 +29,5 @@ interface FriendsTableProps {
     friends: Friend[];
 }
 
-interface Friend {
-    user1: number;
-    firstname: string;
-    lastname: string;
-    index: number
-}
 
 export default FriendsTable;

@@ -50,12 +50,12 @@ const AddFriend: React.FC<AddFriendProps> = ({ }) => {
     }
 
     return (
-        <div className="container bg-light">
+        <div className="container" id="friend-card-bottom">
 
             <form onSubmit={handleSubmit}>
 
-                <div className="form-group">
-                    <label>Friend Name</label>
+                <div className="form-group pt-3">
+                    <label>Name</label>
                     {/* display all users that aren't current user or a friend that already exists */}
                     <select className="form-control" onChange={handleFriendSelect}>
                         <option value='0'>--Select One--</option>
@@ -70,7 +70,7 @@ const AddFriend: React.FC<AddFriendProps> = ({ }) => {
 
                 <button
                     type="submit"
-                    className="btn btn-primary rounded-0"
+                    className="btn btn-light"
                     disabled={selectedFriend === null}
                 >
                     Add Friend

@@ -11,7 +11,7 @@ export interface Player {
 }
 
 export interface PlayerProfile {
-    user1?: number;
+    userid?: number;
     firstname: string;
     lastname: string;
     index: number;
@@ -27,4 +27,21 @@ export interface TableScore {
     differential: number;
     _created: string;
     clubname: string;
+}
+
+export interface Friend {
+    userid: number;
+    firstname: string;
+    lastname: string;
+    index: number;
+}
+
+export type RoundData = {
+    selectedCourseId: number;
+    selectedCourseName: string;
+    slope: number;
+    courseRating: number;
+    teeGender: string;
+    selectedTee: string;
+    playingPartner: Friend | null;
 }
