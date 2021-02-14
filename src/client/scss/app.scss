@@ -3,202 +3,195 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
 $theme-colors: (
-    'primary': #6b966e,
-    'dark': #1e1835,
-    'danger': rgb(196, 53, 53),
-    'info': seagreen
+	'primary': #6b966e,
+	'dark': #1e1835,
+	'danger': rgb(196, 53, 53),
+	'info': seagreen,
 );
 
 .header {
-    border-top: 3px solid #6b966e;
-    font-family: 'raleway';
+	border-top: 3px solid #6b966e;
+	font-family: 'raleway';
 }
 
 #header-clear {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #header-dark {
-    transition: .8s ease;
-    background-color: #1e1835;
+	transition: 0.8s ease;
+	background-color: #1e1835;
 }
 
 .icon-bar {
-    width: 21px;
-    height: 3px;
-    background-color: #fff;
-    display: block;
-    transition: all .2s;
-    margin-top: 4px;
+	width: 21px;
+	height: 3px;
+	background-color: #ffffff;
+	display: block;
+	transition: all 0.2s;
+	margin-top: 4px;
 }
 
 .raleway {
-    font-family: 'raleway';
+	font-family: 'raleway';
 }
 
 .profile-card {
-    cursor: pointer;
-    height: 225px;
+	cursor: pointer;
+	height: 225px;
 }
 
 #index-card {
-    border-radius: 20px;
-    font-family: 'Raleway';
-    background-color: rgba(135, 207, 235, 0.699);
-    border: none;
+	border-radius: 20px;
+	font-family: 'Raleway';
+	background-color: rgba(135, 207, 235, 0.699);
+	border: none;
 }
 
 #index-card-top {
-    height: 72%;
-    border-radius: 20px 20px 0 0;
-    padding: 1.25rem;
+	height: 72%;
+	border-radius: 20px 20px 0 0;
+	padding: 1.25rem;
 }
 
 #index-card-bottom {
-    height: 28%;
-    border-radius: 0 0 20px 20px;
-    background-color: rgb(211, 209, 209);
+	height: 28%;
+	border-radius: 0 0 20px 20px;
+	background-color: rgb(211, 209, 209);
 }
 
 #friend-card {
-    font-family: 'Raleway';
-    border-radius: 20px;
-    border: none;
+	font-family: 'Raleway';
+	border-radius: 20px;
+	border: none;
 }
 
 #friend-card-top {
-    height: 28%;
+	height: 28%;
 }
 
 #friend-card-bottom {
-    height: 72%;
-    border-radius: 0 0 20px 20px;
-    background-color: rgba(183, 226, 183, 0.767);
+	height: 72%;
+	border-radius: 0 0 20px 20px;
+	background-color: rgba(183, 226, 183, 0.767);
 }
 
 #table-top {
-    border-radius: 20px 20px 0 0;
-    border-top: hidden;
+	border-radius: 20px 20px 0 0;
+	border-top: hidden;
 }
 
 .score-container {
-    border-radius: 20px;
-    padding: 1em;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: rgba(5, 8, 5, 0.288);;
-  }
-    
-.score {
-    font-family: 'Raleway';
-    border: 1px solid black;
-    border-radius: 5%;
-    height: 4.5rem;
-    width: 4.5rem;
-    margin: 8px;
-    display: flex;
-    align-items: flex-end;
-    line-height: 1em;
-    font-size: 3rem;
-    color: black;
-    background-color: white;
-    cursor: pointer;
+	border-radius: 20px;
+	padding: 1em;
+	display: flex;
+	flex-wrap: wrap;
+	background-color: rgba(5, 8, 5, 0.288);
 }
 
+.score {
+	font-family: 'Raleway';
+	border: 1px solid black;
+	border-radius: 5%;
+	height: 4.5rem;
+	width: 4.5rem;
+	margin: 8px;
+	display: flex;
+	align-items: flex-end;
+	line-height: 1em;
+	font-size: 3rem;
+	color: black;
+	background-color: white;
+	cursor: pointer;
+}
 
 #content {
-    width: 100%;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
+	width: 100%;
+	min-height: 100vh;
+	transition: all 0.3s;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
-
 #root {
-    background-color: rgba(143, 143, 143, 0.05);
+	background-color: rgba(143, 143, 143, 0.05);
 }
 
 #content-container {
-    padding-top: 10%;
-    min-height: 100vh;
+	padding-top: 10%;
+	min-height: 100vh;
 }
 
 #sidebar-collapse {
-    border: none;
-    padding: 0;
-    outline: none;
+	border: none;
+	padding: 0;
+	outline: none;
 }
 
 // button styling
 
-
 #play-btn {
-    padding: 0.1rem .3rem;
+	padding: 0.1rem 0.3rem;
 }
 
-
 div > .profile-btn {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 #top-navbar {
-    font-family: 'Raleway';
-    padding: 0.8rem 1rem;
-}
- 
-table input {
-    display: block; 
-    padding: 0.75rem; 
-    margin: 0; 
-    border: 0; 
-    width: 100%;
-    text-align: center;
-    background-color: transparent;
-    font-family: 'Oswald', sans-serif;
+	font-family: 'Raleway';
+	padding: 0.8rem 1rem;
 }
 
+table input {
+	display: block;
+	padding: 0.75rem;
+	margin: 0;
+	border: 0;
+	width: 100%;
+	text-align: center;
+	background-color: transparent;
+	font-family: 'Oswald', sans-serif;
+}
 
 .scrollable {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 table {
-    font-family: 'Libre Franklin', sans-serif;
-    -webkit-focus-ring-color: none;
+	font-family: 'Libre Franklin', sans-serif;
+	-webkit-focus-ring-color: none;
 }
 
-    
 input:focus {
-    outline: none;
+	outline: none;
 }
 
 .extra-width {
-    min-width: 42px;
+	min-width: 42px;
 }
 
 .table > tbody > tr > td {
-    padding: 0;
+	padding: 0;
 }
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type='number'] {
+	-moz-appearance: textfield;
 }
 
 .no-und:hover {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
